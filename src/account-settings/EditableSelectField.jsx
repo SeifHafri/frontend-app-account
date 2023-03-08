@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -5,6 +6,7 @@ import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
 import {
   Button, Form, StatefulButton,
 } from '@edx/paragon';
+// eslint-disable-next-line no-unused-vars
 import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -167,11 +169,12 @@ const EditableSelectField = (props) => {
               <h6 aria-level="3">{label}</h6>
               {isEditable ? (
                 <Button variant="link" onClick={handleEdit} className="ml-3">
-                  <FontAwesomeIcon className="mr-1" icon={faPencilAlt} />{intl.formatMessage(messages['account.settings.editable.field.action.edit'])}
+                  {/* <FontAwesomeIcon className="mr-1" icon={faPencilAlt} /> */}
+                  {intl.formatMessage(messages['account.settings.editable.field.action.edit'])}
                 </Button>
               ) : null}
             </div>
-            <p data-hj-suppress className={isGrayedOut ? 'grayed-out' : null}>{renderValue(value)}</p>
+            <p data-hj-suppress className={isGrayedOut ? 'grayed-out' : 'editable-field'}>{renderValue(value)}</p>
             <p className="small text-muted mt-n2">{renderConfirmationMessage() || helpText}</p>
           </div>
         ),

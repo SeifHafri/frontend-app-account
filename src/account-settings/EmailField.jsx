@@ -6,6 +6,7 @@ import {
   Button, StatefulButton, Form,
 } from '@edx/paragon';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// eslint-disable-next-line no-unused-vars
 import { faExclamationTriangle, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 
 import Alert from './Alert';
@@ -157,12 +158,12 @@ const EmailField = (props) => {
               <h6 aria-level="3">{label}</h6>
               {isEditable ? (
                 <Button variant="link" onClick={handleEdit} className="ml-3">
-                  <FontAwesomeIcon className="mr-1" icon={faPencilAlt} />
+                  {/* <FontAwesomeIcon className="mr-1" icon={faPencilAlt} /> */}
                   {intl.formatMessage(messages['account.settings.editable.field.action.edit'])}
                 </Button>
               ) : null}
             </div>
-            <p data-hj-suppress>{renderValue()}</p>
+            <p className="editable-field" data-hj-suppress>{renderValue()}</p>
             {renderConfirmationMessage() || <p className="small text-muted mt-n2">{helpText}</p>}
           </div>
         ),

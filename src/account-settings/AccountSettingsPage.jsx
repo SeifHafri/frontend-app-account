@@ -28,6 +28,7 @@ import {
 } from './data/actions';
 import { accountSettingsPageSelector } from './data/selectors';
 import PageLoading from './PageLoading';
+// eslint-disable-next-line no-unused-vars
 import JumpNav from './JumpNav';
 import DeleteAccount from './delete-account';
 import EditableField from './EditableField';
@@ -434,6 +435,7 @@ class AccountSettingsPage extends React.Component {
 
     return (
       <EmailField
+        className="editable-field"
         name="secondary_email"
         label={this.props.intl.formatMessage(messages['account.settings.field.secondary.email'])}
         emptyLabel={this.props.intl.formatMessage(messages['account.settings.field.secondary.email.empty'])}
@@ -491,12 +493,12 @@ class AccountSettingsPage extends React.Component {
       && !localStorage.getItem('submittedDOB')
     );
     return (
-      <>
-        { shouldUpdateDOB
+      <div>
+        {shouldUpdateDOB
           && (
-          <DOBModal
-            {...editableFieldProps}
-          />
+            <DOBModal
+              {...editableFieldProps}
+            />
           )}
         <div className="account-section pt-3 mb-5" id="basic-information" ref={this.navLinkRefs['#basic-information']}>
           {
@@ -505,13 +507,13 @@ class AccountSettingsPage extends React.Component {
           }
           {localStorage.getItem('submittedDOB')
             && (
-            <OneTimeDismissibleAlert
-              id="updated-dob"
-              variant="success"
-              icon={CheckCircle}
-              header={this.props.intl.formatMessage(messages['account.settings.field.dob.form.success'])}
-              body=""
-            />
+              <OneTimeDismissibleAlert
+                id="updated-dob"
+                variant="success"
+                icon={CheckCircle}
+                header={this.props.intl.formatMessage(messages['account.settings.field.dob.form.success'])}
+                body=""
+              />
             )}
 
           <h2 className="section-heading h4 mb-3">
@@ -523,6 +525,7 @@ class AccountSettingsPage extends React.Component {
           {this.renderNameChangeModal()}
 
           <EditableField
+            className="editable-field"
             name="username"
             type="text"
             value={this.props.formValues.username}
@@ -539,10 +542,10 @@ class AccountSettingsPage extends React.Component {
             type="text"
             value={
               verifiedName?.status === 'submitted'
-              && this.props.formValues.pending_name_change
+                && this.props.formValues.pending_name_change
                 ? this.props.formValues.pending_name_change
                 : this.props.formValues.name
-              }
+            }
             label={this.props.intl.formatMessage(messages['account.settings.field.full.name'])}
             emptyLabel={
               this.isEditable('name')
@@ -567,29 +570,30 @@ class AccountSettingsPage extends React.Component {
           />
           {verifiedName
             && (
-            <EditableField
-              name="verified_name"
-              type="text"
-              value={this.props.formValues.verified_name}
-              label={
-                (
-                  <div className="d-flex">
-                    {this.props.intl.formatMessage(messages['account.settings.field.name.verified'])}
-                    {
-                      this.renderVerifiedNameIcon(verifiedName.status)
-                    }
-                  </div>
-                )
-              }
-              helpText={this.renderVerifiedNameHelpText(verifiedName.status, verifiedName.proctored_exam_attempt_id)}
-              isEditable={this.isEditable('verifiedName')}
-              isGrayedOut={!this.isEditable('verifiedName')}
-              onChange={this.handleEditableFieldChange}
-              onSubmit={this.handleSubmitVerifiedName}
-            />
+              <EditableField
+                name="verified_name"
+                type="text"
+                value={this.props.formValues.verified_name}
+                label={
+                  (
+                    <div className="d-flex">
+                      {this.props.intl.formatMessage(messages['account.settings.field.name.verified'])}
+                      {
+                        this.renderVerifiedNameIcon(verifiedName.status)
+                      }
+                    </div>
+                  )
+                }
+                helpText={this.renderVerifiedNameHelpText(verifiedName.status, verifiedName.proctored_exam_attempt_id)}
+                isEditable={this.isEditable('verifiedName')}
+                isGrayedOut={!this.isEditable('verifiedName')}
+                onChange={this.handleEditableFieldChange}
+                onSubmit={this.handleSubmitVerifiedName}
+              />
             )}
 
           <EmailField
+            className="editable-field"
             name="email"
             label={this.props.intl.formatMessage(messages['account.settings.field.email'])}
             emptyLabel={
@@ -610,15 +614,15 @@ class AccountSettingsPage extends React.Component {
           <ResetPassword email={this.props.formValues.email} />
           {(!getConfig().ENABLE_COPPA_COMPLIANCE)
             && (
-            <EditableSelectField
-              name="year_of_birth"
-              type="select"
-              label={this.props.intl.formatMessage(messages['account.settings.field.dob'])}
-              emptyLabel={this.props.intl.formatMessage(messages['account.settings.field.dob.empty'])}
-              value={this.props.formValues.year_of_birth}
-              options={yearOfBirthOptions}
-              {...editableFieldProps}
-            />
+              <EditableSelectField
+                name="year_of_birth"
+                type="select"
+                label={this.props.intl.formatMessage(messages['account.settings.field.dob'])}
+                emptyLabel={this.props.intl.formatMessage(messages['account.settings.field.dob.empty'])}
+                value={this.props.formValues.year_of_birth}
+                options={yearOfBirthOptions}
+                {...editableFieldProps}
+              />
             )}
           <EditableSelectField
             name="country"
@@ -636,20 +640,20 @@ class AccountSettingsPage extends React.Component {
           />
           {showState
             && (
-            <EditableSelectField
-              name="state"
-              type="select"
-              value={this.props.formValues.state}
-              options={stateOptions}
-              label={this.props.intl.formatMessage(messages['account.settings.field.state'])}
-              emptyLabel={
-                this.isEditable('state')
-                  ? this.props.intl.formatMessage(messages['account.settings.field.state.empty'])
-                  : this.renderEmptyStaticFieldMessage()
-              }
-              isEditable={this.isEditable('state')}
-              {...editableFieldProps}
-            />
+              <EditableSelectField
+                name="state"
+                type="select"
+                value={this.props.formValues.state}
+                options={stateOptions}
+                label={this.props.intl.formatMessage(messages['account.settings.field.state'])}
+                emptyLabel={
+                  this.isEditable('state')
+                    ? this.props.intl.formatMessage(messages['account.settings.field.state.empty'])
+                    : this.renderEmptyStaticFieldMessage()
+                }
+                isEditable={this.isEditable('state')}
+                {...editableFieldProps}
+              />
             )}
         </div>
 
@@ -690,11 +694,11 @@ class AccountSettingsPage extends React.Component {
           {getConfig().COACHING_ENABLED
             && this.props.formValues.coaching.eligible_for_coaching
             && (
-            <CoachingToggle
-              name="coaching"
-              phone_number={this.props.formValues.phone_number}
-              coaching={this.props.formValues.coaching}
-            />
+              <CoachingToggle
+                name="coaching"
+                phone_number={this.props.formValues.phone_number}
+                coaching={this.props.formValues.coaching}
+              />
             )}
         </div>
         {getConfig().ENABLE_DEMOGRAPHICS_COLLECTION && this.renderDemographicsSection()}
@@ -774,6 +778,7 @@ class AccountSettingsPage extends React.Component {
               { siteName: getConfig().SITE_NAME },
             )}
           </p>
+          <br />
           <ThirdPartyAuth />
         </div>
 
@@ -784,7 +789,7 @@ class AccountSettingsPage extends React.Component {
           />
         </div>
 
-      </>
+      </div>
     );
   }
 
@@ -810,20 +815,19 @@ class AccountSettingsPage extends React.Component {
       loaded,
       loadingError,
     } = this.props;
-
     return (
       <div className="page__account-settings container-fluid py-5">
         {this.renderDuplicateTpaProviderMessage()}
         <h1 className="mb-4">
           {this.props.intl.formatMessage(messages['account.settings.page.heading'])}
         </h1>
-        <div>
+        <div className="account-card">
           <div className="row">
-            <div className="col-md-3">
+            {/* <div className="col-md-3">
               <JumpNav
                 displayDemographicsLink={this.props.formValues.shouldDisplayDemographicsSection}
               />
-            </div>
+            </div> */}
             <div className="col-md-9">
               {loading ? this.renderLoading() : null}
               {loaded ? this.renderContent() : null}

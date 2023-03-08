@@ -40,13 +40,14 @@ const JumpNav = ({
         </li>
         {getConfig().ENABLE_DEMOGRAPHICS_COLLECTION && displayDemographicsLink
           && (
-          <li>
-            <NavHashLink to="#demographics-information">
-              {intl.formatMessage(messages['account.settings.section.demographics.information'])}
-            </NavHashLink>
-          </li>
+            <li>
+              <NavHashLink to="#demographics-information">
+                {intl.formatMessage(messages['account.settings.section.demographics.information'])}
+              </NavHashLink>
+            </li>
           )}
         <li>
+
           <NavHashLink to="#social-media">
             {intl.formatMessage(messages['account.settings.section.social.media'])}
           </NavHashLink>
