@@ -97,6 +97,7 @@ class ThirdPartyAuth extends Component {
 
   renderNoProviders() {
     return (
+
       <FormattedMessage
         id="account.settings.sso.no.providers"
         defaultMessage="No accounts can be linked at this time."

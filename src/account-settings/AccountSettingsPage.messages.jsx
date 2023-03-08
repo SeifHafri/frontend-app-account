@@ -496,7 +496,7 @@ const messages = defineMessages({
 
   'account.settings.section.social.media': {
     id: 'account.settings.section.social.media',
-    defaultMessage: 'Social Media Links',
+    defaultMessage: ' Links',
     description: 'Section header for social media links settings',
   },
   'account.settings.section.social.media.description': {

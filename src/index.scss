@@ -1,4 +1,5 @@
 $fa-font-path: "~font-awesome/fonts";
+$primary: red;
 @import "~font-awesome/scss/font-awesome";
 
 @import "~@edx/brand/paragon/fonts";
@@ -16,14 +17,19 @@ $fa-font-path: "~font-awesome/fonts";
 }
 
 // TODO: Update edx-bootstrap theme to incorporate these edits.
-.btn, a.btn {
+.btn,
+a.btn {
   text-decoration: none;
+
   &:hover {
     text-decoration: none;
   }
 }
+
 .btn-link {
   text-decoration: underline;
+  color: red;
+
   &:hover {
     text-decoration: underline;
   }
@@ -33,7 +39,8 @@ $fa-font-path: "~font-awesome/fonts";
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  & > main {
+
+  &>main {
     flex-grow: 1;
   }
 }
@@ -49,7 +56,7 @@ $fa-font-path: "~font-awesome/fonts";
 
 .coaching-consent {
   .disclaimer {
-    font-size: 	0.75rem;
+    font-size: 0.75rem;
   }
 }
 

@@ -22,6 +22,7 @@ const ResetPassword = (props) => {
       </h6>
       <p>
         <StatefulButton
+          id="reset-button"
           variant="link"
           state={status}
           onClick={(e) => {
